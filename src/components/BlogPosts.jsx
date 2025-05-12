@@ -12,7 +12,7 @@ function BlogPosts() {
         
 
         if (!response.ok) {
-          throw new Error('Failed to fetch posts');
+          throw new Error('Unable to retrieve posts');
         }
 
         const data = await response.json();
@@ -28,15 +28,18 @@ function BlogPosts() {
   }, []);
 
   if (loading) {
-    return <p>Loading...</p>;  
+    return (
+      <div>
+        <p style={{ color: 'green' }}>Loading...</p>
+      </div>
+    ) 
   }
 
   if (error) {
     return (
       <div>
-        <p style={{ color: 'red' }}>Error: {error}</p>
-        {/* Optionally, display an error image */}
-        <img src="./errorImage.png" alt="Error" />
+        <p style={{ color: 'red'}}>Error: {error}</p>
+        <img src="./images/error-message.png" alt="Error" />
       </div>
     );
   }
@@ -44,7 +47,7 @@ function BlogPosts() {
   return (
     <div>
       {posts.map(post => (
-        <article key={post.id} style={{ marginBottom: '1rem' }}>
+        <article key={post.id}>
           <h2>{post.title}</h2>
           <p>{post.body}</p>
         </article>
