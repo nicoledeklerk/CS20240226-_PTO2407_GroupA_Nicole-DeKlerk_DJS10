@@ -10,7 +10,7 @@ function BlogPosts() {
             try {
                 const response = await fetch('https://jsonplaceholder.typicode.com/posts'); //fetch data from API//
                 if (!response.ok) { //check if response is ok//
-                    throw new Error('Network response was not ok'); //throw error if not ok//
+                    throw new Error('Data fetching failed'); //throw error if not ok//
                 }
                 const data = await response.json(); //convert JSON to JavaScript object//
                 setPosts(data); //set posts state with fetched data//
